@@ -39,20 +39,7 @@ input[type="number"], input[type="text"] {
 }
 
 #restartButton, #resetButton, #saveButton {
-    position: absolute;
-    top: -1px;
-}
-
-#restartButton {
-    right: 5px;
-}
-
-#resetButton {
-    right: 150px;
-}
-
-#saveButton {
-    right: 290px; /* Adjust the positioning to fit with the other buttons */
+    margin-right: 10px;
 }
 
 #easterEgg {
