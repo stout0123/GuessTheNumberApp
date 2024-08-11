@@ -155,34 +155,6 @@ function redeemCode() {
     document.getElementById('redeemCodeInput').value = ''; // Clear the input
 }
 
-// Save game function
-function saveGame() {
-    const gameState = {
-        level: level,
-        attempts: attempts,
-        numberToGuess: numberToGuess
-    };
-    localStorage.setItem('guessTheNumberSave', JSON.stringify(gameState));
-    alert('Game saved successfully!');
-}
-
-// Load game function
-function loadGame() {
-    const savedGameState = localStorage.getItem('guessTheNumberSave');
-    if (savedGameState) {
-        const gameState = JSON.parse(savedGameState);
-        level = gameState.level;
-        attempts = gameState.attempts;
-        numberToGuess = gameState.numberToGuess;
-        document.getElementById('level').textContent = `Level: ${level}`;
-        document.getElementById('attempts').textContent = `Attempts: ${attempts}/${baseAttempts - (level - 1)}`;
-        document.getElementById('attemptsLeft').textContent = baseAttempts - (level - 1) - attempts;
-        alert('Game loaded successfully!');
-    } else {
-        alert('No saved game found.');
-    }
-}
-
     } else {
         alert('Invalid code. Please try again.');
     }
