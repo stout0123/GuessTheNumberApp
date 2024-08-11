@@ -11,7 +11,6 @@
         <h1>Guess the Number Game</h1>
         <button onclick="resetGame()" id="restartButton">Restart Game</button>
         <button onclick="resetAttempts()" id="resetButton">Reset Attempts</button>
-        <button onclick="saveGame()" id="saveButton">Save Game</button>
         <p>Guess a number between 1 and 100. You have <span id="attemptsLeft">10</span> attempts.</p>
         <input type="number" id="guessInput" min="1" max="100">
         <button onclick="checkGuess()">Submit Guess</button>
@@ -22,6 +21,9 @@
             <input type="text" id="redeemCodeInput" placeholder="Enter code">
             <button onclick="redeemCode()">Enter Code</button>
         </div>
+        <!-- Add Save and Load buttons -->
+        <button id="saveButton" onclick="saveGame()">Save Game</button>
+        <button id="loadButton" onclick="loadGame()">Load Game</button>
         <div id="easterEgg" class="easter-egg"></div>
     </div>
     <div class="game-over-container" id="gameOverScreen">
