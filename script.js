@@ -172,3 +172,9 @@ function redeemCode() {
     }
     document.getElementById('redeemCodeInput').value = ''; // Clear the input
 }
+
+    } else {
+        alert('Invalid code. Please try again.');
+    }
+    document.getElementById('redeemCodeInput').value = ''; // Clear the input
+}
