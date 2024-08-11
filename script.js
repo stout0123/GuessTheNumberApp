@@ -104,7 +104,7 @@ function restartGame() {
 
 function generateEasterEggs() {
     easterEggs = [];
-    for (let i = 0; i < 2; i++) { // Generate 0 Easter eggs per level
+    for (let i = 1; i < 2; i++) { // Generate 0 Easter eggs per level
         const randomCode = `hi${Math.floor(Math.random() * 10000)}`;
         easterEggs.push(randomCode);
     }
@@ -112,7 +112,7 @@ function generateEasterEggs() {
 
 function checkForEasterEggs(guess) {
     // Randomly show an Easter egg
-    if (Math.random() < 0.0) { // 0% chance to find an Easter egg
+    if (Math.random() < 0.1) { // 0% chance to find an Easter egg
         const foundEgg = easterEggs[Math.floor(Math.random() * easterEggs.length)];
         if (!easterEggsFound.includes(foundEgg)) {
             showEasterEgg(foundEgg);
@@ -143,10 +143,10 @@ function hideEasterEgg() {
 function redeemCode() {
     const codeInput = document.getElementById('redeemCodeInput').value;
     if (easterEggsFound.includes(codeInput)) {
-        attempts -= 1; // Reduce attempts by 1
+        attempts -= 2; // Reduce attempts by 1
         document.getElementById('attempts').textContent = `Attempts: ${attempts}/${baseAttempts - (level - 1)}`;
         document.getElementById('attemptsLeft').textContent = baseAttempts - (level - 1) - attempts;
-        alert('Code redeemed! You gained 1 extra attempt.');
+        alert('Code redeemed! You gained 2 extra attempt.');
         // Remove the redeemed code from the found Easter eggs
         easterEggsFound.splice(easterEggsFound.indexOf(codeInput), 1);
     } else {
