@@ -4,8 +4,6 @@ let level = 1;
 const baseAttempts = 13;
 let easterEggs = [];
 const easterEggsFound = [];
-let saveCodes = {};
-const maxSaveCodes = 50;
 
 function checkGuess() {
     const guessInput = document.getElementById('guessInput');
@@ -142,18 +140,6 @@ function hideEasterEgg() {
     easterEggDiv.style.display = 'none';
 }
 
-function saveGame() {
-    if (Object.keys(saveCodes).length >= maxSaveCodes) {
-        alert("Max save codes reached. No more saves allowed.");
-        return;
-    }
-    
-    const saveCode = `save${Math.floor(Math.random() * 10000)}`;
-    saveCodes[saveCode] = level;
-    
-    alert(`Game saved! Use the code: ${saveCode} to return to level ${level}.`);
-}
-
 function redeemCode() {
     const codeInput = document.getElementById('redeemCodeInput').value;
     if (easterEggsFound.includes(codeInput)) {
@@ -163,14 +149,38 @@ function redeemCode() {
         alert('Code redeemed! You gained 1 extra attempt.');
         // Remove the redeemed code from the found Easter eggs
         easterEggsFound.splice(easterEggsFound.indexOf(codeInput), 1);
-    } else if (saveCodes[codeInput]) {
-        level = saveCodes[codeInput];
-        alert(`Code redeemed! Returning to level ${level}.`);
-        resetForNextLevel();
     } else {
         alert('Invalid code. Please try again.');
     }
     document.getElementById('redeemCodeInput').value = ''; // Clear the input
+}
+
+// Save game function
+function saveGame() {
+    const gameState = {
+        level: level,
+        attempts: attempts,
+        numberToGuess: numberToGuess
+    };
+    localStorage.setItem('guessTheNumberSave', JSON.stringify(gameState));
+    alert('Game saved successfully!');
+}
+
+// Load game function
+function loadGame() {
+    const savedGameState = localStorage.getItem('guessTheNumberSave');
+    if (savedGameState) {
+        const gameState = JSON.parse(savedGameState);
+        level = gameState.level;
+        attempts = gameState.attempts;
+        numberToGuess = gameState.numberToGuess;
+        document.getElementById('level').textContent = `Level: ${level}`;
+        document.getElementById('attempts').textContent = `Attempts: ${attempts}/${baseAttempts - (level - 1)}`;
+        document.getElementById('attemptsLeft').textContent = baseAttempts - (level - 1) - attempts;
+        alert('Game loaded successfully!');
+    } else {
+        alert('No saved game found.');
+    }
 }
 
     } else {
