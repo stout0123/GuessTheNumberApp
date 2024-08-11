@@ -40,6 +40,16 @@ button {
     margin-top: 10px;
 }
 
+.code-redeem {
+    margin-top: 20px;
+}
+
+#redeemCodeInput {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
 #restartButton {
     position: absolute;
     top: -1px; 
